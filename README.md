@@ -1,5 +1,7 @@
 # raw-alsa-player
 
+[![Build Status](https://travis-ci.org/blueponies666/raw-alsa-player.svg?branch=master)](https://travis-ci.org/blueponies666/raw-alsa-player)
+
 ALSA audio player using the raw kernel API \(ioctl)
 
 This is a small audio player that is NOT linked to the ALSA library. Instead, it uses the raw kernel interface.

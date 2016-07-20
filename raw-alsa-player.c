@@ -1,6 +1,8 @@
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/ioctl.h>
+#include <time.h>
 #include <sound/asound.h>
 #include <stdint.h>
 #include <unistd.h>
@@ -57,7 +59,7 @@ void hw_p_set_imask(int device_node, struct snd_pcm_hw_params *params, int param
 int main (int argc, char **argv) {
 	int opt_char = 0;
 	const char *device_nodename = "/dev/snd/pcmC0D0p";
-	int timer_sched = 0;
+/*	int timer_sched = 0; */
 	unsigned int rate = 44100;
 	unsigned int channels = 2;
 	unsigned int format = SNDRV_PCM_FORMAT_S16_LE;
@@ -81,7 +83,7 @@ int main (int argc, char **argv) {
 				}
 				break;
 			case 'V':
-				timer_sched = 1;
+/*				timer_sched = 1; */
 				break;
 		}
 	}
