@@ -85,6 +85,10 @@ int main (int argc, char **argv) {
 			case 'V':
 /*				timer_sched = 1; */
 				break;
+			default:
+				fprintf(stderr, "Usage: %s [-D /dev/pcm/pcmC0D0p] [-r rate] [-c channels] [-f format (number)]\n", argv[0]);
+				return 1;
+				break;
 		}
 	}
 	char *filename = argv[optind];
@@ -120,7 +124,6 @@ int main (int argc, char **argv) {
 	}
 	ioctl(device_node, SNDRV_PCM_IOCTL_PREPARE, 0);
 	ioctl(device_node, SNDRV_PCM_IOCTL_START, 0);
-	struct snd_pcm_status status = {0};
 	size_t period_size = 2048;
 	if (period_size > (AUDIO_BUF_MAX / frame_len)) period_size = AUDIO_BUF_MAX / frame_len;
 	while (1) {
@@ -136,7 +139,6 @@ int main (int argc, char **argv) {
 		if (n != (nread / frame_len)) {
 			break;
 		}
-		ioctl(device_node, SNDRV_PCM_IOCTL_STATUS, &status);
 	}
 	ioctl(device_node, SNDRV_PCM_IOCTL_HW_FREE, 0);
 	close(device_node);
